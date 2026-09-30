@@ -13,6 +13,7 @@ N: NodeJs(Backend)
 # npm install express / npm i express :- this cmd is use for download the express
 # npm i -g nodemon :- this cmd is use for the install the nodemon    
 # npm i dotenv
+# npm i mongoose
 
 Run the application:- npm run dev       
 
