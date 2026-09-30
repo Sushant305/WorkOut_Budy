@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Workout = require("../models/workoutModel");
+const { createWorkout, getAllWorkout, getworkoutById, deleteWorkoutById, updateWorkoutById } = require("../controllers/workoutController");
 
 /*
  * Routes: /api/workouts
@@ -10,11 +11,7 @@ const Workout = require("../models/workoutModel");
  * Access : Public
  */
 
-router.get("/", (req, res) => {
-  res.json({
-    message: "GET all workouts",
-  });
-});
+router.get("/",getAllWorkout);
 
 /*
  * Routes: /api/workouts/:id
@@ -23,13 +20,7 @@ router.get("/", (req, res) => {
  * parameters: id
  * Access : Public
  */
-router.get("/:id", (req, res) => {
-  //   const { id } = req.params;
-
-  res.json({
-    message: "GET a single workout by id",
-  });
-});
+router.get("/:id",getworkoutById);
 
 /*
  * Routes: /api/workouts/
@@ -38,16 +29,7 @@ router.get("/:id", (req, res) => {
  * parameters: none
  * Access : Public
  */
-router.post("/", async (req, res) => {
-  const { title, reps, load } = req.body;
-
-  try {
-    const workout = await Workout.create({ title, reps, load });
-    res.status(200).json(workout);
-  } catch(error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+router.post("/", createWorkout);
 
 /*
  * Routes: /api/workouts/:id
@@ -56,13 +38,7 @@ router.post("/", async (req, res) => {
  * parameters: id
  * Access : Public
  */
-router.delete("/:id", (req, res) => {
-  //   const { id } = req.params;
-
-  res.json({
-    message: "Delete a workout successfully",
-  });
-});
+router.delete("/:id",deleteWorkoutById);
 
 /*
  * Routes: /api/workouts/:id
@@ -71,12 +47,6 @@ router.delete("/:id", (req, res) => {
  * parameters: id
  * Access : Public
  */
-router.patch("/:id", (req, res) => {
-  //   const { id } = req.params;
-
-  res.json({
-    message: "update a workout successfully",
-  });
-});
+router.patch("/:id",updateWorkoutById);
 
 module.exports = router;
