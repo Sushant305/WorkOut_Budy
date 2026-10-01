@@ -44,7 +44,8 @@ exports.createWorkout = async (req, res) => {
   const { title, reps, load } = req.body;
 
   try {
-    const workout = await Workout.create({ title, reps, load });
+    const workout = await Workout.insertMany(req.body)
+    // const workout = await Workout.create({ title, reps, load });
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ error: error.message });
