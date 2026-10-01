@@ -1,4 +1,4 @@
-const { model, default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const Workout = require("../models/workoutModel");
 
 // get all workout
@@ -76,10 +76,14 @@ exports.deleteWorkoutById = async (req, res) => {
 exports.updateWorkoutById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, reps, load } = req.body;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        error: "This is invalid Id",
+      });
+    }
     const workout = await Workout.findByIdAndUpdate(
       id,
-      { title, reps, load },
+      {...req.body},
       { new: true, runValidators: true },
     );
     if (!workout) {
