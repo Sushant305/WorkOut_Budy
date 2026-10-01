@@ -1,4 +1,4 @@
-const { model } = require("mongoose");
+const { model, default: mongoose } = require("mongoose");
 const Workout = require("../models/workoutModel");
 
 // get all workout
@@ -18,10 +18,15 @@ exports.getAllWorkout = async (req, res) => {
 };
 
 // get a workout by a single id
-
 exports.getworkoutById = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        error: "This is invalid Id",
+      });
+    }
     const workout = await Workout.findById(id);
     if (!workout) {
       return res.status(404).json({
@@ -50,13 +55,18 @@ exports.createWorkout = async (req, res) => {
 exports.deleteWorkoutById = async (req, res) => {
   try {
     const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        error: "This is invalid Id",
+      });
+    }
     const workout = await Workout.findByIdAndDelete(id);
     if (!workout) {
       return res.status(404).json({
         error: "No Workouts are present",
       });
     }
-    res.status(200).json({message: "workout deleted successfully",});
+    res.status(200).json({ message: "workout deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
