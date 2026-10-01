@@ -82,7 +82,7 @@ exports.updateWorkoutById = async (req, res) => {
       });
     }
     const workout = await Workout.findByIdAndUpdate(
-      id,
+      {id},
       {...req.body},
       { new: true, runValidators: true },
     );
