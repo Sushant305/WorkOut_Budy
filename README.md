@@ -24,3 +24,6 @@ post            /workouts --> create a new workout doc.
 get             /workouts/:id --> single workout doc.
 delete          /workout/:id --> delete a single workout doc.
 patch           /wokouts/:id -->update a single workout.
+
+## Frontend :-
+# npx create-react-app frontend
