@@ -27,3 +27,9 @@ patch           /wokouts/:id -->update a single workout.
 
 ## Frontend :-
 # npx create-react-app frontend
+
+
+## How to run 
+open the backend folder and open the integrated terminal and run cmd :- "npm run dev"
+open the frontend folder and open the integrated terminal and run cmd :- "npm start"
+
