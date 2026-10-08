@@ -13,7 +13,9 @@ const HomePage = () => {
   const { workouts, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
+    
     const fetchWorkouts = async () => {
+       console.log("API URL:", import.meta.env.VITE_API_URL);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/workouts`);
       const json = await response.json();
       if (response.ok) {
