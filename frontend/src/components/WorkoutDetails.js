@@ -8,6 +8,9 @@ const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
 
   const handleClick = async () => {
+    const url = `${process.env.REACT_APP_API_URL}/api/workouts/${workout._id}`;
+
+    console.log("DELETE URL:", url);
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/api/workouts/${workout._id}`,
       {
