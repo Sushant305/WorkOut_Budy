@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
 // port no.
 const PORT = process.env.PORT;
 
+
+app.use("/api/workouts/", workOutRoutes);
+
 // connect to the database
 mongoose
   .connect(process.env.MONGO_URL)
@@ -45,6 +48,5 @@ mongoose
     console.log(error);
   });
 
-app.use("/api/workouts/", workOutRoutes);
 
 
