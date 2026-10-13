@@ -22,13 +22,13 @@ app.use((req, res, next) => {
 
 // routes (http://localhost:4000/)
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     messgae: "Welcome to the application",
   });
 });
 
 // port no.
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 
 app.use("/api/workouts/", workOutRoutes);

@@ -13,7 +13,7 @@ exports.getAllWorkout = async (req, res) => {
     }
     res.status(200).json(workout);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -35,7 +35,7 @@ exports.getworkoutById = async (req, res) => {
     }
     res.status(200).json(workout);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -63,9 +63,9 @@ exports.createWorkout = async (req, res) => {
   try {
     // const workout = await Workout.insertMany(req.body)
     const workout = await Workout.create({ title, reps, load });
-    res.status(200).json(workout);
+    res.status(201).json(workout);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -86,7 +86,7 @@ exports.deleteWorkoutById = async (req, res) => {
     }
     res.status(200).json({ message: "workout deleted successfully" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -100,7 +100,7 @@ exports.updateWorkoutById = async (req, res) => {
       });
     }
     const workout = await Workout.findByIdAndUpdate(
-      { id },
+      id,
       { ...req.body },
       { new: true, runValidators: true },
     );
@@ -111,6 +111,6 @@ exports.updateWorkoutById = async (req, res) => {
     }
     res.status(200).json(workout);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
